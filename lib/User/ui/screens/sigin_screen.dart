@@ -20,14 +20,15 @@ class _SigInScreen extends State<SigInScreen> {
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
-    return sigInGoogleUI();
+    return _handleCurrentSession();
   }
 
   Widget _handleCurrentSession() {
     return StreamBuilder(
       stream: userBloc.authStatus,
+      // response of stream
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        // snapshot - data - Obj User
+        // snapshot- data - Obj User (Firebase)
         if (!snapshot.hasData || snapshot.hasError) {
           return sigInGoogleUI();
         } else {
