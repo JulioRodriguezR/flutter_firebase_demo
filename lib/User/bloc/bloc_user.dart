@@ -9,6 +9,7 @@ class UserBloc implements Bloc {
   Stream<FirebaseUser> streamFirebase =
       FirebaseAuth.instance.onAuthStateChanged;
 
+  // STATE session
   Stream<FirebaseUser> get authStatus => streamFirebase;
 
   // SigIn to app from Google
