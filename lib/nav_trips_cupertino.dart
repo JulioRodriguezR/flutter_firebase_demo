@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 import 'Tabs/ui/screens/home_trips.dart';
 import 'Tabs/ui/screens/search_trips.dart';
+import 'User/bloc/bloc_user.dart';
 import 'User/ui/screens/profile_trips.dart';
 
 class NavTripsCupertino extends StatelessWidget {
@@ -13,34 +15,31 @@ class NavTripsCupertino extends StatelessWidget {
         tabBar: CupertinoTabBar(
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.indigo),
-              title: Text(""),
-            ),
+                icon: Icon(Icons.home, color: Colors.indigo), title: Text("")),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: Colors.indigo),
-              title: Text(""),
-            ),
+                icon: Icon(Icons.search, color: Colors.indigo),
+                title: Text("")),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.indigo),
-              title: Text(""),
-            ),
+                icon: Icon(Icons.person, color: Colors.indigo),
+                title: Text("")),
           ],
         ),
         tabBuilder: (BuildContext context, int index) { // ignore: missing_return
           switch (index) {
             case 0:
               return CupertinoTabView(
-                builder: (BuildContext context) => HomeTrips(),
-              );
+                  builder: (BuildContext context) => HomeTrips());
               break;
             case 1:
               return CupertinoTabView(
-                builder: (BuildContext context) => SearchTrips(),
-              );
+                  builder: (BuildContext context) => SearchTrips());
               break;
             case 2:
               return CupertinoTabView(
-                builder: (BuildContext context) => ProfileTrips(),
+                builder: (BuildContext context) => BlocProvider<UserBloc>(
+                  bloc: UserBloc(),
+                  child: ProfileTrips(),
+                ),
               );
               break;
           }

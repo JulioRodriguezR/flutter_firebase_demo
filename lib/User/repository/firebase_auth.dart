@@ -17,7 +17,7 @@ class FirebaseAuthAPI {
           idToken: gSA.idToken, accessToken: gSA.accessToken),
     );
 
-    // Return obj FirebaseUser with google acount data
+    // Return obj FirebaseUser with google account data
 
     return user;
   }

@@ -17,13 +17,11 @@ class ProfileHeader extends StatelessWidget {
       stream: userBloc.streamFirebase,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return CircularProgressIndicator();
-          case ConnectionState.none:
-            return CircularProgressIndicator();
           case ConnectionState.active:
           case ConnectionState.done:
             return showProfileData(snapshot);
+          default:
+            return CircularProgressIndicator();
         }
       },
     );
@@ -41,8 +39,6 @@ class ProfileHeader extends StatelessWidget {
         ),
       );
     } else {
-      print(snapshot.data);
-
       user = User(
         name: snapshot.data.displayName,
         email: snapshot.data.email,
