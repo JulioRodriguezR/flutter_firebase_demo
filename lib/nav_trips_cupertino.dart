@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'Tab/ui/screens/home_trips.dart';
-import 'Tab/ui/screens/search_trips.dart';
+import 'Tabs/ui/screens/home_trips.dart';
+import 'Tabs/ui/screens/search_trips.dart';
 import 'User/ui/screens/profile_trips.dart';
 
 class NavTripsCupertino extends StatelessWidget {

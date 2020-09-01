@@ -59,6 +59,7 @@ class _SigInScreen extends State<SigInScreen> {
               ButtonGreen(
                 txt: "Login with Gmail",
                 onPressed: () {
+                  userBloc.signOut();
                   userBloc
                       .sigIn()
                       .then((FirebaseUser user) => print(user.displayName));

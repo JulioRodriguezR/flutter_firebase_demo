@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatefulWidget {
-  final VoidCallback onPressed;
+  final VoidCallback onPressed; // Callback + signOut
   bool mini;
   var icon;
   double iconSize;
   var color;
-
-  // Callback + signOut
 
   CircleButton(this.mini, this.icon, this.iconSize, this.color, @required this.onPressed);
 
