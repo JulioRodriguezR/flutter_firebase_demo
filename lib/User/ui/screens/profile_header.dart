@@ -3,12 +3,15 @@ import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/ui/widgets/button_bar.dart';
 import 'package:flutter_firebase_demo/User/ui/widgets/user_info.dart';
+import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class ProfileHeader extends StatelessWidget {
   UserBloc userBloc;
   User user;
+//  final _controllerTitle = TextEditingController();
+//  final _controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +55,40 @@ class ProfileHeader extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
+                // fixed on top
                 Flexible(
-                  child: Container(child: TitleHeader(title: "Profile",)),
+                  child: Container(
+                      child: TitleHeader(
+                    title: "Profile",
+                  )),
                 )
               ],
             ),
+//            Container(
+//              margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
+//              child: ListView(
+//                children: <Widget>[
+//                  Container(
+//                    // TextField Title
+//                    margin: EdgeInsets.only(bottom: 20.0),
+//                    child: TextInput(
+//                      hintText: "Title",
+//                      inputType: null,
+//                      maxLines: 1,
+//                      controller: _controllerTitle, // capture data
+//
+//                    ),
+//                  ),
+//                  TextInput(
+//                    // TextField Description
+//                    hintText: "Description",
+//                    inputType: TextInputType.multiline,
+//                    maxLines: 4,
+//                    controller: _controllerDescription,
+//                  )
+//                ],
+//              ),
+//            ),
             UserInfo(user),
             ButtonsBar()
           ],
