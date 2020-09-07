@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 
 class SearchTrips extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      color: Colors.greenAccent,
+    return Stack(
+      children: <Widget>[
+        GradientBack(height: 250.0),
+      ],
     );
   }
 

@@ -17,9 +17,11 @@ class SigInScreen extends StatefulWidget {
 
 class _SigInScreen extends State<SigInScreen> {
   UserBloc userBloc;
+  double screenWidget;
 
   @override
   Widget build(BuildContext context) {
+    double screenWidget = MediaQuery.of(context).size.width;
     userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }
@@ -44,17 +46,22 @@ class _SigInScreen extends State<SigInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBack("", null),
+          GradientBack(height: null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Welcome\nThis is your Best App",
-                style: TextStyle(
-                  fontSize: 37.0,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              Flexible(
+                child: Container(
+                  width: screenWidget,
+                  child: Text(
+                    "Welcome\nThis is your Best App",
+                    style: TextStyle(
+                      fontSize: 37.0,
+                      fontFamily: "Lato",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
               ButtonGreen(

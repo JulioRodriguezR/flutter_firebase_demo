@@ -26,7 +26,10 @@ class ButtonsBar extends StatelessWidget {
             Icons.add,
             40.0,
             Color.fromRGBO(255, 255, 255, 1),
-            () => {},
+            () => {
+//              Navigator.push(context,
+//                  MaterialPageRoute(builder: (BuildContext context) => null)),
+            },
           ),
           CircleButton(
             true,
