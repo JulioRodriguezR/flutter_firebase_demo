@@ -10,8 +10,8 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 class ProfileHeader extends StatelessWidget {
   UserBloc userBloc;
   User user;
-//  final _controllerTitle = TextEditingController();
-//  final _controllerDescription = TextEditingController();
+  final _controllerTitle = TextEditingController();
+  final _controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

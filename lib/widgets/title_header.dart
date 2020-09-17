@@ -7,7 +7,6 @@ class TitleHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     double screenWidget = MediaQuery.of(context).size.width;
 
     return Text(

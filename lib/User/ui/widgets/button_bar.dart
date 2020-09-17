@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_demo/Tabs/ui/screens/add_screen.dart';
 import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -27,8 +28,12 @@ class ButtonsBar extends StatelessWidget {
             40.0,
             Color.fromRGBO(255, 255, 255, 1),
             () => {
-//              Navigator.push(context,
-//                  MaterialPageRoute(builder: (BuildContext context) => null)),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => AddScreen(),
+                ),
+              ),
             },
           ),
           CircleButton(
