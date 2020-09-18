@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
+import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
 
 class AddScreen extends StatefulWidget {
@@ -12,6 +13,9 @@ class AddScreen extends StatefulWidget {
 class _AddPlaceScreen extends State<AddScreen> {
   @override
   Widget build(BuildContext context) {
+    final _controllerTitlePlace = TextEditingController();
+    final _controllerDescriptionPlace = TextEditingController();
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -42,6 +46,29 @@ class _AddPlaceScreen extends State<AddScreen> {
                 ),
               ),
             ],
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
+            child: ListView(
+              children: <Widget>[
+                Container(),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: TextInput(
+                    hintText: "Title",
+                    inputType: null,
+                    maxLines: 1,
+                    controller: _controllerTitlePlace,
+                  ),
+                ),
+                TextInput(
+                  hintText: "Description",
+                  inputType: TextInputType.multiline,
+                  maxLines: 4,
+                  controller: _controllerDescriptionPlace,
+                )
+              ],
+            ),
           )
         ],
       ),
