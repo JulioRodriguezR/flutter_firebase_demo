@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_demo/Tabs/widgets/title_input_location.dart';
+import 'package:flutter_firebase_demo/widgets/button_purple.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
@@ -43,7 +44,7 @@ class _AddPlaceScreen extends State<AddScreen> {
               Flexible(
                 child: Container(
                   padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 10.0),
-                  child: TitleHeader(title: "Add a new Screen"),
+                  child: TitleHeader(title: "Add a new Place"),
                 ),
               ),
             ],
@@ -73,6 +74,17 @@ class _AddPlaceScreen extends State<AddScreen> {
                   child: TextInputLocation(
                     hintText: "Add Location",
                     iconData: Icons.location_on,
+                  ),
+                ),
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: "Add Place",
+                    onPressed: () {
+                      // Fireabase storage
+                      // url -
+                      // Cloud firestore
+                    },
                   ),
                 )
               ],
