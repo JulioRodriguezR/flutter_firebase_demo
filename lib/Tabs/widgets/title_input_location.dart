@@ -1,18 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextInput extends StatelessWidget {
+class TextInputLocation extends StatelessWidget {
   final String hintText;
-  final TextInputType inputType;
   final TextEditingController controller;
-  int maxLines = 1;
+  final IconData iconData;
 
-  TextInput(
-      {Key key,
-      @required this.hintText,
-      @required this.inputType,
-      @required this.controller,
-      this.maxLines});
+  TextInputLocation({
+    Key key,
+    @required this.hintText,
+    @required this.controller,
+    @required this.iconData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +18,6 @@ class TextInput extends StatelessWidget {
       padding: EdgeInsets.only(right: 20.0, left: 20.0),
       child: TextField(
         controller: controller,
-        keyboardType: inputType,
-        maxLines: maxLines,
         style: TextStyle(
           fontSize: 15.0,
           fontFamily: "Lato",
@@ -29,20 +25,27 @@ class TextInput extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         decoration: InputDecoration(
-          filled: true,
-          fillColor: Color(0xFFe5e5e5),
-          border: InputBorder.none,
           hintText: hintText,
+          suffixIcon: Icon(iconData),
+          fillColor: Color(0xFFFFFFFF),
+          filled: true,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFe5e5e5)),
-            borderRadius: BorderRadius.all(Radius.circular(9.0)),
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFe5e5e5)),
-            borderRadius: BorderRadius.all(Radius.circular(9.0)),
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
           ),
         ),
       ),
+      decoration: BoxDecoration(boxShadow: <BoxShadow>[
+        BoxShadow(
+          color: Colors.black12,
+          blurRadius: 15.0,
+          offset: Offset(0.0, 7.0),
+        )
+      ]),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_demo/Tabs/widgets/title_input_location.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
@@ -66,6 +67,13 @@ class _AddPlaceScreen extends State<AddScreen> {
                   inputType: TextInputType.multiline,
                   maxLines: 4,
                   controller: _controllerDescriptionPlace,
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  child: TextInputLocation(
+                    hintText: "Add Location",
+                    iconData: Icons.location_on,
+                  ),
                 )
               ],
             ),
