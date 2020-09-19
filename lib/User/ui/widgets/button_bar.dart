@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_demo/Tabs/ui/screens/add_screen.dart';
 import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'circle_button.dart';
 
@@ -28,11 +31,18 @@ class ButtonsBar extends StatelessWidget {
             40.0,
             Color.fromRGBO(255, 255, 255, 1),
             () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => AddScreen(),
-                ),
+              // Acess to camera
+              ImagePicker.pickImage(source: ImageSource.camera).then(
+                (File img) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AddScreen(),
+                    ),
+                  );
+                },
+              ).catchError(
+                (onError) => print(onError),
               ),
             },
           ),

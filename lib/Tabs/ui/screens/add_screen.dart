@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_demo/Tabs/widgets/card_image.dart';
 import 'package:flutter_firebase_demo/Tabs/widgets/title_input_location.dart';
 import 'package:flutter_firebase_demo/widgets/button_purple.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
@@ -6,6 +9,10 @@ import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
 
 class AddScreen extends StatefulWidget {
+  File image;
+
+  AddScreen({Key key, this.image});
+
   @override
   State<StatefulWidget> createState() {
     return _AddPlaceScreen();
@@ -53,7 +60,26 @@ class _AddPlaceScreen extends State<AddScreen> {
             margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
             child: ListView(
               children: <Widget>[
-                Container(),
+                Container(
+                  alignment: Alignment.center,
+                  child: CardImageWithFabIcon(
+                    pathImage: widget.image.path,
+                    iconData: Icons.camera_alt,
+                    width: 350.0,
+                    height: 250.0,
+                    left: 0,
+                  ),
+                ), //Foto
+                Container(
+                  //TextField Title
+                  margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  child: TextInput(
+                    hintText: "Title",
+                    inputType: null,
+                    maxLines: 1,
+                    controller: _controllerTitlePlace,
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.only(bottom: 20.0),
                   child: TextInput(

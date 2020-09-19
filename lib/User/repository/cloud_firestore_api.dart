@@ -26,16 +26,16 @@ class CloudFirestoreAPI {
     }, merge: true);
   }
 
-  Future<void> updatePlaceDate(Place place) async {
-    CollectionReference refPlaces = _db.collection(PLACES);
+  // Future<void> updatePlaceDate(Place place) async {
+  //   CollectionReference refPlaces = _db.collection(PLACES);
 
-    await _auth.currentUser().then((FirebaseUser user) {
-      // Unique and incremental identifier
-      refPlaces.add({
-        'name': place.name,
-        'description': place.description,
-        'userOwner': "$USERS/${user.uid}", // reference
-      });
-    });
-  }
+  //   await _auth.currentUser().then((FirebaseUser user) {
+  //     // Unique and incremental identifier
+  //     refPlaces.add({
+  //       'name': place.name,
+  //       'description': place.description,
+  //       'userOwner': "$USERS/${user.uid}", // reference
+  //     });
+  //   });
+  // }
 }
