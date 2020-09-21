@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 
 import 'cloud_firestore_api.dart';

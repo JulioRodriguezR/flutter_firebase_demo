@@ -1,12 +1,15 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_demo/Tabs/widgets/card_image.dart';
-import 'package:flutter_firebase_demo/Tabs/widgets/title_input_location.dart';
+import 'package:flutter_firebase_demo/Tabs/ui/widgets/card_image.dart';
+import 'package:flutter_firebase_demo/Tabs/ui/widgets/title_input_location.dart';
+import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:flutter_firebase_demo/widgets/button_purple.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddScreen extends StatefulWidget {
   File image;
@@ -22,6 +25,7 @@ class AddScreen extends StatefulWidget {
 class _AddPlaceScreen extends State<AddScreen> {
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
 
@@ -69,9 +73,8 @@ class _AddPlaceScreen extends State<AddScreen> {
                     height: 250.0,
                     left: 0,
                   ),
-                ), //Foto
+                ),
                 Container(
-                  //TextField Title
                   margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: TextInput(
                     hintText: "Title",
@@ -107,9 +110,13 @@ class _AddPlaceScreen extends State<AddScreen> {
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-                      // Fireabase storage
-                      // url -
-                      // Cloud firestore
+                      // Firebase storage
+                      userBloc.currentUser.then((FirebaseUser user) {
+                        if (user != null) {
+                          // Upload -url
+
+                        }
+                      });
                     },
                   ),
                 )
