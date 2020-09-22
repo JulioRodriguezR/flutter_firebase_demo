@@ -9,12 +9,19 @@ class FirebaseAuthAPI {
 
   Future<FirebaseUser> sigIn() async {
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
+
+    if (googleSignInAccount == null) {
+      return null;
+    }
+
+    final GoogleSignInAuthentication gSA =
+        await googleSignInAccount.authentication;
 
     FirebaseUser user = await _auth.signInWithCredential(
       GoogleAuthProvider.getCredential(
           idToken: gSA.idToken, accessToken: gSA.accessToken),
     );
+    print("user name: ${user.displayName}");
 
     // Return obj FirebaseUser with google account data
 
