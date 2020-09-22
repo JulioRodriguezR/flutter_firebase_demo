@@ -30,12 +30,15 @@ class CloudFirestoreAPI {
     // collection -
     CollectionReference refPlaces = _db.collection(PLACES);
 
+    FirebaseUser user  = await _auth.currentUser();
+    DocumentReference _userRef = _db.collection(this.USERS).document(user.uid);
+
     await _auth.currentUser().then((FirebaseUser user) {
       // Unique and incremental identifier
       refPlaces.add({
         'name': place.name,
         'description': place.description,
-        'userOwner': "$USERS/${user.uid}", // reference
+        'userOwner': _userRef, // reference
       });
     });
   }
