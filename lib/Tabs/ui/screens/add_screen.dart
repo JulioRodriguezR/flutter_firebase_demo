@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_demo/Tabs/ui/widgets/card_image.dart';
 import 'package:flutter_firebase_demo/Tabs/ui/widgets/title_input_location.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_firebase_demo/widgets/button_purple.dart';
 import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddScreen extends StatefulWidget {
   File image;
@@ -23,9 +23,9 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreen extends State<AddScreen> {
+  UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
-    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
 
@@ -110,11 +110,26 @@ class _AddPlaceScreen extends State<AddScreen> {
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-                      // Firebase storage
                       userBloc.currentUser.then((FirebaseUser user) {
+                        // ID currently logged in user
                         if (user != null) {
-                          // Upload -url
-
+                          String uid = user.uid;
+                          String path = "$uid/${DateTime.now().toString()}.jpg";
+                          // Firebase storage
+                          // url -
+                          userBloc
+                              .uploadFile(path, widget.image)
+                              .then((StorageUploadTask storageUploadTask) {
+                            storageUploadTask.onComplete.then((value) {
+                              // Value of upload image
+                              storageUploadTask.onComplete
+                                  .then((StorageTaskSnapshot snapshot) {
+                                snapshot.ref.getDownloadURL().then((urlImage) {
+                                  print(urlImage);
+                                });
+                              });
+                            });
+                          });
                         }
                       });
                     },
