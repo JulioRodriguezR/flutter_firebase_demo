@@ -16,8 +16,8 @@ class CardImageWithFabIcon extends StatelessWidget {
     @required this.pathImage,
     @required this.width,
     @required this.height,
-    @required this.onPressedFabIcon,
     @required this.iconData,
+    this.onPressedFabIcon,
     this.left,
   });
 

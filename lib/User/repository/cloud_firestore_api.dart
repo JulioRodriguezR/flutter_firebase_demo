@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_firebase_demo/Tabs/model/place.dart';
@@ -26,16 +25,18 @@ class CloudFirestoreAPI {
     }, merge: true);
   }
 
-  // Future<void> updatePlaceDate(Place place) async {
-  //   CollectionReference refPlaces = _db.collection(PLACES);
+  Future<void> updatePlaceDate(Place place) async {
+    // Automatically create an identifier
+    // collection -
+    CollectionReference refPlaces = _db.collection(PLACES);
 
-  //   await _auth.currentUser().then((FirebaseUser user) {
-  //     // Unique and incremental identifier
-  //     refPlaces.add({
-  //       'name': place.name,
-  //       'description': place.description,
-  //       'userOwner': "$USERS/${user.uid}", // reference
-  //     });
-  //   });
-  // }
+    await _auth.currentUser().then((FirebaseUser user) {
+      // Unique and incremental identifier
+      refPlaces.add({
+        'name': place.name,
+        'description': place.description,
+        'userOwner': "$USERS/${user.uid}", // reference
+      });
+    });
+  }
 }

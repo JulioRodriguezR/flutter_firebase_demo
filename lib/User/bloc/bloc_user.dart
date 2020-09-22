@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_firebase_demo/Tabs/model/place.dart';
 import 'package:flutter_firebase_demo/Tabs/repository/firebase_storage_repository.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/repository/auth_repository.dart';
@@ -20,13 +21,13 @@ class UserBloc implements Bloc {
       FirebaseAuth.instance.currentUser(); // Id User
 
   // SigIn to app from Google
-  Future<FirebaseUser> sigIn() {
-    return _auth_repository.signInFirebase();
-  }
+  Future<FirebaseUser> sigIn() => _auth_repository.signInFirebase();
 
   // Register user in db
   void updateUserData(User user) =>
       _cloudFirestoreRepository.updateUserData(user);
+  Future<void> updatePlaceData(Place place) =>
+      _cloudFirestoreRepository.updatePlaceDate(place);
   Future<StorageUploadTask> uploadFile(String path, File image) =>
       _firebaseStorageRepository.uploadFile(path, image);
 
