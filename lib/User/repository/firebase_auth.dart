@@ -13,7 +13,6 @@ class FirebaseAuthAPI {
     if (googleSignInAccount == null) {
       return null;
     }
-
     final GoogleSignInAuthentication gSA =
         await googleSignInAccount.authentication;
 
