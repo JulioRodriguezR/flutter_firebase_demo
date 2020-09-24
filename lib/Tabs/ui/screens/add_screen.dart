@@ -30,6 +30,7 @@ class _AddPlaceScreen extends State<AddScreen> {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
+    final _controllerLocationPlace = TextEditingController();
 
     return Scaffold(
       body: Stack(
@@ -97,6 +98,7 @@ class _AddPlaceScreen extends State<AddScreen> {
                   child: TextInputLocation(
                     hintText: "Add Location",
                     iconData: Icons.location_on,
+                    controller: _controllerLocationPlace,
                   ),
                 ),
                 Container(
@@ -106,9 +108,11 @@ class _AddPlaceScreen extends State<AddScreen> {
                     onPressed: () {
                       userBloc.currentUser.then((FirebaseUser user) {
                         // ID currently logged in user
+
                         if (user != null) {
                           String uid = user.uid;
                           String path = "$uid/${DateTime.now().toString()}.jpg";
+
                           // Firebase storage
                           // url -
                           userBloc
@@ -119,23 +123,26 @@ class _AddPlaceScreen extends State<AddScreen> {
                               storageUploadTask.onComplete
                                   .then((StorageTaskSnapshot snapshot) {
                                 snapshot.ref.getDownloadURL().then((urlImage) {
-                                  print(urlImage);
+                                  // Cloud Firestore
+                                  userBloc
+                                      .updatePlaceData(Place(
+                                    name: _controllerTitlePlace.text,
+                                    description:
+                                        _controllerDescriptionPlace.text,
+                                    location: _controllerLocationPlace.text,
+                                    urlImage: urlImage,
+                                  ))
+                                      .whenComplete(
+                                    () {
+                                      print("Finish");
+                                      Navigator.pop(context);
+                                    },
+                                  );
                                 });
                               });
                             });
                           });
                         }
-                      });
-
-                      // Cloud Firestore
-                      userBloc
-                          .updatePlaceData(Place(
-                        name: _controllerDescriptionPlace.text,
-                        description: _controllerDescriptionPlace.text,
-                      ))
-                          .whenComplete(() {
-                        print("Finish");
-                        Navigator.pop(context);
                       });
                     },
                   ),

@@ -30,7 +30,7 @@ class CloudFirestoreAPI {
     // collection -
     CollectionReference refPlaces = _db.collection(PLACES);
 
-    FirebaseUser user  = await _auth.currentUser();
+    FirebaseUser user = await _auth.currentUser();
     DocumentReference _userRef = _db.collection(this.USERS).document(user.uid);
 
     await _auth.currentUser().then((FirebaseUser user) {
@@ -38,7 +38,9 @@ class CloudFirestoreAPI {
       refPlaces.add({
         'name': place.name,
         'description': place.description,
-        'userOwner': _userRef, // reference
+        'location': place.location,
+        'userOwner': _userRef,
+        'urlImage': place.urlImage,
       });
     });
   }
