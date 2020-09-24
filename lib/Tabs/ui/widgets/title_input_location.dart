@@ -8,8 +8,8 @@ class TextInputLocation extends StatelessWidget {
   TextInputLocation({
     Key key,
     @required this.hintText,
-    @required this.controller,
     @required this.iconData,
+    this.controller,
   });
 
   @override

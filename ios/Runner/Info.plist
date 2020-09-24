@@ -42,10 +42,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-    <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
+  <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>La app require permisos para tomar una foto. ¿Podemos usar tu cámara?</string>
 </dict>
 </plist>

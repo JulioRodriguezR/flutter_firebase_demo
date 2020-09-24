@@ -20,7 +20,6 @@ class FirebaseAuthAPI {
       GoogleAuthProvider.getCredential(
           idToken: gSA.idToken, accessToken: gSA.accessToken),
     );
-    print("user name: ${user.displayName}");
 
     // Return obj FirebaseUser with google account data
 

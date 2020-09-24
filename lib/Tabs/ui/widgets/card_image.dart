@@ -23,8 +23,6 @@ class CardImageWithFabIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(pathImage);
-
     final card = Container(
       height: height,
       width: width,
@@ -32,6 +30,7 @@ class CardImageWithFabIcon extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
+          // image: AssetImage(pathImage),
           image: pathImage.contains('assets')
               ? AssetImage(pathImage)
               : new FileImage(

@@ -86,15 +86,6 @@ class _AddPlaceScreen extends State<AddScreen> {
                     controller: _controllerTitlePlace,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20.0),
-                  child: TextInput(
-                    hintText: "Title",
-                    inputType: null,
-                    maxLines: 1,
-                    controller: _controllerTitlePlace,
-                  ),
-                ),
                 TextInput(
                   hintText: "Description",
                   inputType: TextInputType.multiline,

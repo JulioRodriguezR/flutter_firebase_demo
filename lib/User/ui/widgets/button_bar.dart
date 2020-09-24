@@ -34,16 +34,19 @@ class ButtonsBar extends StatelessWidget {
               // Acess to camera
               ImagePicker.pickImage(source: ImageSource.camera).then(
                 (File img) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => AddScreen(),
-                    ),
-                  );
+                  if (img != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            AddScreen(image: img),
+                      ),
+                    );
+                  }
                 },
               ).catchError(
                 (onError) => print(onError),
-              ),
+              )
             },
           ),
           CircleButton(
