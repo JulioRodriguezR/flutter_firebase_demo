@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_firebase_demo/Tabs/model/place.dart';
+import 'package:flutter_firebase_demo/Place/model/place.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 
 class CloudFirestoreAPI {

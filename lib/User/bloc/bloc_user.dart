@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_firebase_demo/Tabs/model/place.dart';
-import 'package:flutter_firebase_demo/Tabs/repository/firebase_storage_repository.dart';
+import 'package:flutter_firebase_demo/Place/model/place.dart';
+import 'package:flutter_firebase_demo/Place/repository/firebase_storage_repository.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/repository/auth_repository.dart';
 import 'package:flutter_firebase_demo/User/repository/cloud_firestore_repository.dart';

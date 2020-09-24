@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_demo/Tabs/ui/screens/add_screen.dart';
+import 'package:flutter_firebase_demo/Place/ui/screens/add_screen.dart';
 import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:image_picker/image_picker.dart';
