@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
-class TextInputLocation extends StatelessWidget {
+class TextInputLocation extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
-  final IconData iconData;
+  final IconData iconButton;
 
   TextInputLocation({
     Key key,
     @required this.hintText,
-    @required this.iconData,
-    this.controller,
+    @required this.iconButton,
+    @required this.controller,
   });
+
+  @override
+  _TextInputLocationState createState() => _TextInputLocationState();
+}
+
+class _TextInputLocationState extends State<TextInputLocation> {
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  Position _currentPosition;
+  String _currentAddress;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(right: 20.0, left: 20.0),
       child: TextField(
-        controller: controller,
+        controller: widget.controller,
         style: TextStyle(
           fontSize: 15.0,
           fontFamily: "Lato",
@@ -25,8 +35,13 @@ class TextInputLocation extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         decoration: InputDecoration(
-          hintText: hintText,
-          suffixIcon: Icon(iconData),
+          hintText: widget.hintText,
+          suffixIcon: IconButton(
+            icon: Icon(widget.iconButton),
+            onPressed: () {
+              _getCurrentLocation();
+            },
+          ),
           fillColor: Color(0xFFFFFFFF),
           filled: true,
           enabledBorder: OutlineInputBorder(
@@ -47,5 +62,36 @@ class TextInputLocation extends StatelessWidget {
         )
       ]),
     );
+  }
+
+  _getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        _currentAddress =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }

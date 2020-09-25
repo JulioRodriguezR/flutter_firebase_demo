@@ -21,7 +21,6 @@ class _SigInScreen extends State<SigInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidget = MediaQuery.of(context).size.width;
     userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }

@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 
 class CircleButton extends StatefulWidget {
   final VoidCallback onPressed; // Callback + signOut
-  bool mini;
-  var icon;
-  double iconSize;
+  IconData icon;
   var color;
+  bool mini;
+  double iconSize;
 
-  CircleButton(this.mini, this.icon, this.iconSize, this.color, @required this.onPressed);
+  CircleButton({
+    Key key,
+    this.onPressed,
+    this.mini,
+    this.icon,
+    this.iconSize,
+    this.color,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -16,7 +23,6 @@ class CircleButton extends StatefulWidget {
 }
 
 class _CircleButton extends State<CircleButton> {
-
   @override
   Widget build(BuildContext context) {
     return Expanded(

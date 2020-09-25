@@ -7,12 +7,13 @@ class TextInput extends StatelessWidget {
   final TextEditingController controller;
   int maxLines = 1;
 
-  TextInput(
-      {Key key,
-      @required this.hintText,
-      @required this.inputType,
-      @required this.controller,
-      this.maxLines});
+  TextInput({
+    Key key,
+    @required this.hintText,
+    @required this.inputType,
+    @required this.controller,
+    this.maxLines,
+  });
 
   @override
   Widget build(BuildContext context) {

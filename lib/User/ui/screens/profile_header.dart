@@ -3,15 +3,14 @@ import 'package:flutter_firebase_demo/User/bloc/bloc_user.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/ui/widgets/button_bar.dart';
 import 'package:flutter_firebase_demo/User/ui/widgets/user_info.dart';
-import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class ProfileHeader extends StatelessWidget {
+  // final _controllerTitle = TextEditingController();
+  // final _controllerDescription = TextEditingController();
   UserBloc userBloc;
   User user;
-  final _controllerTitle = TextEditingController();
-  final _controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

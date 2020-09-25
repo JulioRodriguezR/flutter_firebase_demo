@@ -8,9 +8,9 @@ class User {
 
   User({
     Key key,
-    @required this.uid,
     @required this.name,
     @required this.email,
     @required this.photoUrl,
+    this.uid,
   });
 }

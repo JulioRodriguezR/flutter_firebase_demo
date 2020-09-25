@@ -6,10 +6,10 @@ import 'package:flutter_firebase_demo/widgets/floating_action_button_green.dart'
 class CardImageWithFabIcon extends StatelessWidget {
   final double height;
   final double width;
-  double left;
   final String pathImage;
   final VoidCallback onPressedFabIcon;
   final IconData iconData;
+  double left;
 
   CardImageWithFabIcon({
     Key key,
