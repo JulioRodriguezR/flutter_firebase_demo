@@ -3,14 +3,14 @@ import 'package:geolocator/geolocator.dart';
 
 class TextInputLocation extends StatefulWidget {
   final String hintText;
-  final TextEditingController controller;
   final IconData iconButton;
+  TextEditingController controller;
 
   TextInputLocation({
     Key key,
     @required this.hintText,
     @required this.iconButton,
-    @required this.controller,
+    this.controller,
   });
 
   @override
@@ -27,7 +27,7 @@ class _TextInputLocationState extends State<TextInputLocation> {
     return Container(
       padding: EdgeInsets.only(right: 20.0, left: 20.0),
       child: TextField(
-        controller: widget.controller,
+        controller: _currentAddress,
         style: TextStyle(
           fontSize: 15.0,
           fontFamily: "Lato",
@@ -54,13 +54,15 @@ class _TextInputLocationState extends State<TextInputLocation> {
           ),
         ),
       ),
-      decoration: BoxDecoration(boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: Colors.black12,
-          blurRadius: 15.0,
-          offset: Offset(0.0, 7.0),
-        )
-      ]),
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 15.0,
+            offset: Offset(0.0, 7.0),
+          )
+        ],
+      ),
     );
   }
 
@@ -73,9 +75,10 @@ class _TextInputLocationState extends State<TextInputLocation> {
       setState(() {
         _currentPosition = position;
       });
+
       _getAddressFromLatLng();
-    }).catchError((e) {
-      print(e);
+    }).catchError((onError) {
+      print(onError);
     });
   }
 
@@ -90,8 +93,11 @@ class _TextInputLocationState extends State<TextInputLocation> {
         _currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";
       });
-    } catch (e) {
-      print(e);
+
+      String f(TextEditingController x) => x;
+      String g(String y) => f(y);
+    } catch (onError) {
+      print(onError);
     }
   }
 }

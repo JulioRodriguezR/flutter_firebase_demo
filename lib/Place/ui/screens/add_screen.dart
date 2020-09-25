@@ -12,7 +12,6 @@ import 'package:flutter_firebase_demo/widgets/gradient_back.dart';
 import 'package:flutter_firebase_demo/widgets/text_input.dart';
 import 'package:flutter_firebase_demo/widgets/title_header.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:geolocator/geolocator.dart';
 
 class AddScreen extends StatefulWidget {
   File image;
@@ -99,7 +98,7 @@ class _AddPlaceScreen extends State<AddScreen> {
                   child: TextInputLocation(
                     hintText: "Add Location",
                     iconButton: Icons.location_on,
-                    controller: _controllerLocationPlace,
+                    // controller: _controllerLocationPlace,
                   ),
                 ),
                 Container(
