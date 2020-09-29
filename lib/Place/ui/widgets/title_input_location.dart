@@ -3,14 +3,12 @@ import 'package:geolocator/geolocator.dart';
 
 class TextInputLocation extends StatefulWidget {
   final String hintText;
-  final IconData iconButton;
-  TextEditingController controller;
+  final TextEditingController controller;
 
   TextInputLocation({
     Key key,
     @required this.hintText,
-    @required this.iconButton,
-    this.controller,
+    @required this.controller,
   });
 
   @override
@@ -27,7 +25,7 @@ class _TextInputLocationState extends State<TextInputLocation> {
     return Container(
       padding: EdgeInsets.only(right: 20.0, left: 20.0),
       child: TextField(
-        controller: _currentAddress,
+        controller: widget.controller,
         style: TextStyle(
           fontSize: 15.0,
           fontFamily: "Lato",
@@ -37,9 +35,14 @@ class _TextInputLocationState extends State<TextInputLocation> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           suffixIcon: IconButton(
-            icon: Icon(widget.iconButton),
+            icon: Icon(Icons.location_on),
             onPressed: () {
               _getCurrentLocation();
+
+              widget.controller.text = _currentAddress;
+              widget.controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: widget.controller.text.length),
+              );
             },
           ),
           fillColor: Color(0xFFFFFFFF),
@@ -93,9 +96,6 @@ class _TextInputLocationState extends State<TextInputLocation> {
         _currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";
       });
-
-      String f(TextEditingController x) => x;
-      String g(String y) => f(y);
     } catch (onError) {
       print(onError);
     }
