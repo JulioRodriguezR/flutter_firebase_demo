@@ -3,13 +3,10 @@ import 'package:geolocator/geolocator.dart';
 
 class TextInputLocation extends StatefulWidget {
   final String hintText;
-  final TextEditingController controller;
+  TextEditingController controller = TextEditingController();
 
-  TextInputLocation({
-    Key key,
-    @required this.hintText,
-    @required this.controller,
-  });
+  TextInputLocation(
+      {Key key, @required this.hintText, @required this.controller});
 
   @override
   _TextInputLocationState createState() => _TextInputLocationState();

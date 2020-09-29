@@ -95,7 +95,10 @@ class _AddPlaceScreen extends State<AddScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
-                  child: TextInputLocation(hintText: "Add Location"),
+                  child: TextInputLocation(
+                    hintText: "Add Location",
+                    controller: _controllerLocationPlace,
+                  ),
                 ),
                 Container(
                   width: 70.0,
