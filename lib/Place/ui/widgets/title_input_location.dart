@@ -14,6 +14,7 @@ class TextInputLocation extends StatefulWidget {
 
 class _TextInputLocationState extends State<TextInputLocation> {
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
   Position _currentPosition;
   String _currentAddress;
 

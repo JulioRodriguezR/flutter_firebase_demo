@@ -7,6 +7,7 @@ class CloudFirestoreAPI {
   // Collections
   final String USERS = "users";
   final String PLACES = "places";
+
   // Bring user entity and make it available to be able to insert in the db
   final Firestore _db = Firestore.instance;
 
@@ -28,10 +29,12 @@ class CloudFirestoreAPI {
   Future<void> updatePlaceDate(Place place) async {
     // Automatically create an identifier
     // collection -
-    CollectionReference refPlaces = _db.collection(PLACES);
+    final CollectionReference refPlaces = _db.collection(PLACES);
 
-    FirebaseUser user = await _auth.currentUser();
-    DocumentReference _userRef = _db.collection(this.USERS).document(user.uid);
+    final FirebaseUser user = await _auth.currentUser();
+    // Get the user's data with the specific id
+    final DocumentReference _userRef =
+        _db.collection(this.USERS).document(user.uid);
 
     await _auth.currentUser().then((FirebaseUser user) {
       // Unique and incremental identifier
@@ -41,6 +44,15 @@ class CloudFirestoreAPI {
         'location': place.location,
         'userOwner': _userRef,
         'urlImage': place.urlImage,
+      }).then((DocumentReference dr) {
+        dr.get().then((DocumentSnapshot snapshot) {
+          snapshot.documentID;
+          _userRef.updateData({
+            'registerPlaces': FieldValue.arrayUnion(
+              [_db.document("$PLACES/${snapshot.documentID}")],
+            ),
+          });
+        });
       });
     });
   }
