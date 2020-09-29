@@ -95,11 +95,7 @@ class _AddPlaceScreen extends State<AddScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
-                  child: TextInputLocation(
-                    hintText: "Add Location",
-                    iconButton: Icons.location_on,
-                    // controller: _controllerLocationPlace,
-                  ),
+                  child: TextInputLocation(hintText: "Add Location"),
                 ),
                 Container(
                   width: 70.0,
@@ -123,15 +119,18 @@ class _AddPlaceScreen extends State<AddScreen> {
                               storageUploadTask.onComplete
                                   .then((StorageTaskSnapshot snapshot) {
                                 snapshot.ref.getDownloadURL().then((urlImage) {
+                                  //
                                   // Cloud Firestore
                                   userBloc
-                                      .updatePlaceData(Place(
-                                    name: _controllerTitlePlace.text,
-                                    description:
-                                        _controllerDescriptionPlace.text,
-                                    location: _controllerLocationPlace.text,
-                                    urlImage: urlImage,
-                                  ))
+                                      .updatePlaceData(
+                                    Place(
+                                      name: _controllerTitlePlace.text,
+                                      description:
+                                          _controllerDescriptionPlace.text,
+                                      location: _controllerLocationPlace.text,
+                                      urlImage: urlImage,
+                                    ),
+                                  )
                                       .whenComplete(
                                     () {
                                       print("Finish");
