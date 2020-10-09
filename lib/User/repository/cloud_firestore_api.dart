@@ -56,4 +56,7 @@ class CloudFirestoreAPI {
       });
     });
   }
+
+// Process firebase data
+
 }
