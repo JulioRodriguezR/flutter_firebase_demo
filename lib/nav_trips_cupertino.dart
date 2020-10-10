@@ -32,11 +32,13 @@ class NavTripsCupertino extends StatelessWidget {
           switch (index) {
             case 0:
               return CupertinoTabView(
-                  builder: (BuildContext context) => HomeTrips());
+                builder: (BuildContext context) => HomeTrips(),
+              );
               break;
             case 1:
               return CupertinoTabView(
-                  builder: (BuildContext context) => SearchTrips());
+                builder: (BuildContext context) => SearchTrips(),
+              );
               break;
             case 2:
               return CupertinoTabView(
@@ -46,6 +48,8 @@ class NavTripsCupertino extends StatelessWidget {
                 ),
               );
               break;
+            default:
+              return null;
           }
         },
       ),

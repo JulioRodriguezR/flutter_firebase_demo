@@ -8,9 +8,7 @@ class FloatingActionButtonGreen extends StatefulWidget {
       {Key key, @required this.iconData, @required this.onPressed});
 
   @override
-  State<StatefulWidget> createState() {
-    return _FloatingActionButtonGreen();
-  }
+  State<StatefulWidget> createState() {}
 }
 
 class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {

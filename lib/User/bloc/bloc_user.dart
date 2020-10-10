@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_firebase_demo/Place/model/place.dart';
 import 'package:flutter_firebase_demo/Place/repository/firebase_storage_repository.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/repository/auth_repository.dart';
+import 'package:flutter_firebase_demo/User/repository/cloud_firestore_api.dart';
 import 'package:flutter_firebase_demo/User/repository/cloud_firestore_repository.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -30,6 +32,9 @@ class UserBloc implements Bloc {
       _cloudFirestoreRepository.updatePlaceDate(place);
   Future<StorageUploadTask> uploadFile(String path, File image) =>
       _firebaseStorageRepository.uploadFile(path, image);
+
+  // Listened User files
+  Stream<QuerySnapshot> placesListStream = Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();
 
   signOut() {
     _auth_repository.signOut();
