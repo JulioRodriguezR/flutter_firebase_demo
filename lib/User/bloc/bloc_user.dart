@@ -9,6 +9,7 @@ import 'package:flutter_firebase_demo/User/model/user.dart';
 import 'package:flutter_firebase_demo/User/repository/auth_repository.dart';
 import 'package:flutter_firebase_demo/User/repository/cloud_firestore_api.dart';
 import 'package:flutter_firebase_demo/User/repository/cloud_firestore_repository.dart';
+import 'package:flutter_firebase_demo/User/ui/widgets/profile_place.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class UserBloc implements Bloc {
@@ -30,11 +31,15 @@ class UserBloc implements Bloc {
       _cloudFirestoreRepository.updateUserData(user);
   Future<void> updatePlaceData(Place place) =>
       _cloudFirestoreRepository.updatePlaceDate(place);
+  // Listened User files
+  Stream<QuerySnapshot> placesListStream =
+      Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();
+  Stream<QuerySnapshot> get placesStream => placesListStream;
   Future<StorageUploadTask> uploadFile(String path, File image) =>
       _firebaseStorageRepository.uploadFile(path, image);
 
-  // Listened User files
-  Stream<QuerySnapshot> placesListStream = Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
   signOut() {
     _auth_repository.signOut();

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_firebase_demo/Place/model/place.dart';
 import 'package:flutter_firebase_demo/User/model/user.dart';
+import 'package:flutter_firebase_demo/User/ui/widgets/profile_place.dart';
 
 class CloudFirestoreAPI {
   // Collections
@@ -58,5 +59,15 @@ class CloudFirestoreAPI {
   }
 
 // Process firebase data
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<ProfilePlace> profilePlaces = List<ProfilePlace>();
+    placesListSnapshot.forEach((p) {
+      profilePlaces.add(ProfilePlace(Place(
+          name: p.data['name'],
+          description: p.data['description'],
+          urlImage: p.data['urlImage'])));
+    });
 
+    return profilePlaces;
+  }
 }
